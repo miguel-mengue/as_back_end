@@ -71,7 +71,6 @@ namespace APIUsuarios.Application.Services
             if (usuario is null)
                 throw new KeyNotFoundException($"Usuário com ID {id} não encontrado");
 
-            // Soft Delete: marcar como inativo
             usuario.Ativo = false;
             usuario.DataAtualizacao = DateTime.UtcNow;
 

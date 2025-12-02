@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using APIUsuarios.Application.Interfaces;
 using APIUsuarios.Domain.Entities;
 using APIUsuarios.Infrastructure.Persistence;
