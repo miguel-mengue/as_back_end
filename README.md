@@ -112,7 +112,7 @@ Camada de infraestrutura com:
 
 1. **Clonar o repositório**
    \`\`\`bash
-   git clone https://github.com/miguel-mengue/api-usuarios.git
+   git clone https://github.com/[seu-usuario]/api-usuarios.git
    cd APIUsuarios
    \`\`\`
 
@@ -143,11 +143,9 @@ A API estará disponível em:
 ### 1. GET /usuarios
 Retorna todos os usuários cadastrados.
 
-\`\`\`bash
-curl -X GET "http://localhost:5150/usuarios"
-\`\`\`
+**URL:** `http://localhost:5150/usuarios`
 
-**Resposta (200 OK):**
+**Resposta esperada (200 OK):**
 \`\`\`json
 [
   {
@@ -167,11 +165,9 @@ curl -X GET "http://localhost:5150/usuarios"
 ### 2. GET /usuarios/{id}
 Retorna um usuário específico por ID.
 
-\`\`\`bash
-curl -X GET "http://localhost:5150/usuarios/1"
-\`\`\`
+**URL:** `http://localhost:5150/usuarios/1`
 
-**Resposta (200 OK):**
+**Resposta esperada (200 OK):**
 \`\`\`json
 {
   "id": 1,
@@ -196,19 +192,20 @@ curl -X GET "http://localhost:5150/usuarios/1"
 ### 3. POST /usuarios
 Cria um novo usuário.
 
-\`\`\`bash
-curl -X POST "http://localhost:5150/usuarios" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "João Silva",
-    "email": "joao@email.com",
-    "senha": "senha123",
-    "dataNascimento": "2000-01-15",
-    "telefone": "(11) 98765-4321"
-  }'
+**URL:** `http://localhost:5150/usuarios`
+
+**Corpo da requisição:**
+\`\`\`json
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "senha": "senha123",
+  "dataNascimento": "2000-01-15",
+  "telefone": "(11) 98765-4321"
+}
 \`\`\`
 
-**Resposta (201 Created):**
+**Resposta esperada (201 Created):**
 \`\`\`json
 {
   "id": 1,
@@ -233,19 +230,20 @@ curl -X POST "http://localhost:5150/usuarios" \
 ### 4. PUT /usuarios/{id}
 Atualiza um usuário existente.
 
-\`\`\`bash
-curl -X PUT "http://localhost:5150/usuarios/1" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "João Silva Atualizado",
-    "email": "joao.novo@email.com",
-    "dataNascimento": "2000-01-15",
-    "telefone": "(11) 99999-8888",
-    "ativo": true
-  }'
+**URL:** `http://localhost:5150/usuarios/1`
+
+**Corpo da requisição:**
+\`\`\`json
+{
+  "nome": "João Silva Atualizado",
+  "email": "joao.novo@email.com",
+  "dataNascimento": "2000-01-15",
+  "telefone": "(11) 99999-8888",
+  "ativo": true
+}
 \`\`\`
 
-**Resposta (200 OK):**
+**Resposta esperada (200 OK):**
 \`\`\`json
 {
   "id": 1,
@@ -263,11 +261,9 @@ curl -X PUT "http://localhost:5150/usuarios/1" \
 ### 5. DELETE /usuarios/{id}
 Marca um usuário como inativo (Soft Delete).
 
-\`\`\`bash
-curl -X DELETE "http://localhost:5150/usuarios/1"
-\`\`\`
+**URL:** `http://localhost:5150/usuarios/1`
 
-**Resposta (204 No Content):**
+**Resposta esperada (204 No Content):**
 \`\`\`
 (sem corpo de resposta)
 \`\`\`
@@ -333,9 +329,10 @@ dotnet run
 
 ## 👨‍💼 Autor
 
-**Nome**: Miguel Mengue 
-**Curso**: Analise e Desenvolvimento de Sistemas 
-**Instituição**: ULBRA
+**Nome**: [Seu Nome Completo]  
+**RA**: [Seu RA]  
+**Curso**: [Nome do Curso]  
+**Instituição**: [Sua Instituição]  
 **Período**: 2025/2
 
 ---
