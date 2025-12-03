@@ -16,9 +16,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString)
 );
 
+// Registrar Repository e Service (Dependency Injection)
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+// CORS (permitir requisições do frontend)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -43,29 +45,43 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
-// ENDPOINTS
+// ============ ENDPOINTS ============
 
 // GET: Listar todos os usuários
 app.MapGet("/usuarios", async (IUsuarioService service, CancellationToken ct) =>
 {
-    var usuarios = await service.ListarAsync(ct);
-    return Results.Ok(usuarios);
-})
-.WithName("ListarUsuarios")
-.Produces(StatusCodes.Status200OK);
+    try
+    {
+        var usuarios = await service.ListarAsync(ct);
+        return Results.Ok(usuarios);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[ERROR] GET /usuarios: {ex.Message}");
+        Console.WriteLine($"[ERROR] Stack Trace: {ex.StackTrace}");
+        if (ex.InnerException != null)
+            Console.WriteLine($"[ERROR] Inner Exception: {ex.InnerException.Message}");
+        return Results.BadRequest(new { mensagem = $"Erro ao listar usuários: {ex.Message}" });
+    }
+});
 
 // GET: Buscar usuário por ID
 app.MapGet("/usuarios/{id}", async (int id, IUsuarioService service, CancellationToken ct) =>
 {
-    var usuario = await service.ObterAsync(id, ct);
-    if (usuario is null)
-        return Results.NotFound(new { mensagem = "Usuário não encontrado" });
-    
-    return Results.Ok(usuario);
-})
-.WithName("ObterUsuario")
-.Produces(StatusCodes.Status200OK)
-.Produces(StatusCodes.Status404NotFound);
+    try
+    {
+        var usuario = await service.ObterAsync(id, ct);
+        if (usuario is null)
+            return Results.NotFound(new { mensagem = "Usuário não encontrado" });
+        
+        return Results.Ok(usuario);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[ERROR] GET /usuarios/{id}: {ex.Message}");
+        return Results.BadRequest(new { mensagem = ex.Message });
+    }
+});
 
 // POST: Criar novo usuário
 app.MapPost("/usuarios", async (UsuarioCreateDto dto, IUsuarioService service, CancellationToken ct) =>
@@ -77,14 +93,13 @@ app.MapPost("/usuarios", async (UsuarioCreateDto dto, IUsuarioService service, C
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { mensagem = ex.Message });
+        Console.WriteLine($"[ERROR] POST /usuarios: {ex.Message}");
+        Console.WriteLine($"[ERROR] Stack Trace: {ex.StackTrace}");
+        if (ex.InnerException != null)
+            Console.WriteLine($"[ERROR] Inner Exception: {ex.InnerException.Message}");
+        return Results.BadRequest(new { mensagem = $"Erro ao criar usuário: {ex.Message}" });
     }
-})
-.WithName("CriarUsuario")
-.Accepts<UsuarioCreateDto>("application/json")
-.Produces(StatusCodes.Status201Created)
-.Produces(StatusCodes.Status400BadRequest)
-.Produces(StatusCodes.Status409Conflict);
+});
 
 // PUT: Atualizar usuário
 app.MapPut("/usuarios/{id}", async (int id, UsuarioUpdateDto dto, IUsuarioService service, CancellationToken ct) =>
@@ -100,16 +115,15 @@ app.MapPut("/usuarios/{id}", async (int id, UsuarioUpdateDto dto, IUsuarioServic
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { mensagem = ex.Message });
+        Console.WriteLine($"[ERROR] PUT /usuarios/{id}: {ex.Message}");
+        Console.WriteLine($"[ERROR] Stack Trace: {ex.StackTrace}");
+        if (ex.InnerException != null)
+            Console.WriteLine($"[ERROR] Inner Exception: {ex.InnerException.Message}");
+        return Results.BadRequest(new { mensagem = $"Erro ao atualizar usuário: {ex.Message}" });
     }
-})
-.WithName("AtualizarUsuario")
-.Accepts<UsuarioUpdateDto>("application/json")
-.Produces(StatusCodes.Status200OK)
-.Produces(StatusCodes.Status400BadRequest)
-.Produces(StatusCodes.Status404NotFound);
+});
 
-// DELETE: Remover usuário
+// DELETE: Remover usuário (Soft Delete)
 app.MapDelete("/usuarios/{id}", async (int id, IUsuarioService service, CancellationToken ct) =>
 {
     try
@@ -121,9 +135,13 @@ app.MapDelete("/usuarios/{id}", async (int id, IUsuarioService service, Cancella
     {
         return Results.NotFound(new { mensagem = "Usuário não encontrado" });
     }
-})
-.WithName("RemoverUsuario")
-.Produces(StatusCodes.Status204NoContent)
-.Produces(StatusCodes.Status404NotFound);
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[ERROR] DELETE /usuarios/{id}: {ex.Message}");
+        if (ex.InnerException != null)
+            Console.WriteLine($"[ERROR] Inner Exception: {ex.InnerException.Message}");
+        return Results.BadRequest(new { mensagem = ex.Message });
+    }
+});
 
 app.Run();

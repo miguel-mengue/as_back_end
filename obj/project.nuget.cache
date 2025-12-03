@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HdKOMPhjHTI=",
+  "dgSpecHash": "che8cU3CmgM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\zSles\\Desktop\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
+  "projectFilePath": "C:\\Users\\zSles\\Desktop\\Faculdade ADS\\2 SEMESTRE\\Dev Back-End\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zSles\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\zSles\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",

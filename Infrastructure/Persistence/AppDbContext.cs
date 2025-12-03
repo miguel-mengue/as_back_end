@@ -15,7 +15,6 @@ namespace APIUsuarios.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configurações da entidade Usuario
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.Id);

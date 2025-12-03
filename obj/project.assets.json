@@ -3753,11 +3753,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zSles\\Desktop\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
+      "projectUniqueName": "C:\\Users\\zSles\\Desktop\\Faculdade ADS\\2 SEMESTRE\\Dev Back-End\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
       "projectName": "APIUsuarios",
-      "projectPath": "C:\\Users\\zSles\\Desktop\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
+      "projectPath": "C:\\Users\\zSles\\Desktop\\Faculdade ADS\\2 SEMESTRE\\Dev Back-End\\as_backend\\APIUsuarios\\APIUsuarios.csproj",
       "packagesPath": "C:\\Users\\zSles\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zSles\\Desktop\\as_backend\\APIUsuarios\\obj\\",
+      "outputPath": "C:\\Users\\zSles\\Desktop\\Faculdade ADS\\2 SEMESTRE\\Dev Back-End\\as_backend\\APIUsuarios\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zSles\\AppData\\Roaming\\NuGet\\NuGet.Config"
