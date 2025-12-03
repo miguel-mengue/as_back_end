@@ -334,7 +334,7 @@ dotnet run
 ## 👨‍💼 Autor
 
 **Nome**: Miguel Mengue 
-**Curso**: Analise e Desenvolvimento de Sistemas  
+**Curso**: Analise e Desenvolvimento de Sistemas 
 **Instituição**: ULBRA
 **Período**: 2025/2
 
