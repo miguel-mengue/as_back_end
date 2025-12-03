@@ -1,23 +1,17 @@
-# API de Gerenciamento de Usuários - .NET 9
+# 📚 API de Gerenciamento de Usuários - .NET 9
 
-> 🎬 **[Assista à Demonstração Completa no YouTube](https://youtu.be/5xLaYenBfEo)**
+Uma API RESTful completa desenvolvida em **.NET 9** com **Clean Architecture**, implementando operações CRUD para gerenciamento de usuários com validações robustas, segurança e padrões de design profissionais.
 
----
+## 🎬 Vídeo Demonstrativo
 
-## Visão Geral
+**[Assista a demonstração completa clicando aqui](https://youtu.be/5xLaYenBfEo)**
 
-API REST para gerenciamento de usuários desenvolvida em **C# com .NET 9**, seguindo a arquitetura em camadas (Clean Architecture). O projeto implementa operações CRUD completas com validações robustas, segurança, e padrões de design profissionais.
-
-**Características:**
-- ✅ 5 Endpoints RESTful (GET, POST, PUT, DELETE)
-- ✅ Validações robustas com FluentValidation
-- ✅ Hash seguro de senhas com BCrypt
-- ✅ Email único no banco de dados
-- ✅ Soft Delete (usuários não são removidos)
-- ✅ Clean Architecture em 3 camadas
-- ✅ Repository Pattern + Service Pattern
-- ✅ DTOs para transferência de dados
-- ✅ Banco de dados SQLite com Entity Framework Core
+O vídeo contém:
+- ✅ Apresentação e estrutura do projeto
+- ✅ Explicação detalhada do código
+- ✅ Demonstração prática de todos os 5 endpoints
+- ✅ Testes de validação e tratamento de erros
+- ✅ Verificação do banco de dados
 
 ---
 
@@ -26,75 +20,324 @@ API REST para gerenciamento de usuários desenvolvida em **C# com .NET 9**, segu
 \`\`\`
 APIUsuarios/
 │
-├── 📁 Domain/
-│   └── 📁 Entities/
-│       └── Usuario.cs                 # Entidade do domínio
+├── Domain/
+│   └── Entities/
+│       └── Usuario.cs
 │
-├── 📁 Application/
-│   ├── 📁 DTOs/
-│   │   ├── UsuarioCreateDto.cs        # DTO para criação
-│   │   ├── UsuarioReadDto.cs          # DTO para leitura
-│   │   └── UsuarioUpdateDto.cs        # DTO para atualização
-│   │
-│   ├── 📁 Interfaces/
-│   │   ├── IUsuarioRepository.cs       # Contrato do repositório
-│   │   └── IUsuarioService.cs          # Contrato do serviço
-│   │
-│   ├── 📁 Services/
-│   │   └── UsuarioService.cs           # Lógica de negócio
-│   │
-│   └── 📁 Validators/
-│       ├── UsuarioCreateDtoValidator.cs    # Validações para criar
-│       └── UsuarioUpdateDtoValidator.cs    # Validações para atualizar
+├── Application/
+│   ├── DTOs/
+│   │   ├── UsuarioCreateDto.cs
+│   │   ├── UsuarioReadDto.cs
+│   │   └── UsuarioUpdateDto.cs
+│   ├── Interfaces/
+│   │   ├── IUsuarioRepository.cs
+│   │   └── IUsuarioService.cs
+│   ├── Services/
+│   │   └── UsuarioService.cs
+│   └── Validators/
+│       ├── UsuarioCreateDtoValidator.cs
+│       └── UsuarioUpdateDtoValidator.cs
 │
-├── 📁 Infrastructure/
-│   ├── 📁 Persistence/
-│   │   └── AppDbContext.cs             # Configuração do Entity Framework
-│   │
-│   └── 📁 Repositories/
-│       └── UsuarioRepository.cs        # Implementação do repositório
+├── Infrastructure/
+│   ├── Persistence/
+│   │   └── AppDbContext.cs
+│   └── Repositories/
+│       └── UsuarioRepository.cs
 │
-├── 📁 Migrations/
-│   ├── [timestamp]_InitialCreate.cs
-│   └── UsuariosContextModelSnapshot.cs
+├── Migrations/
+│   └── [Migration files]
 │
-├── 📄 Program.cs                       # Configuração da API e endpoints
-├── 📄 appsettings.json                 # Configurações da aplicação
-├── 📄 APIUsuarios.csproj               # Arquivo do projeto
-├── 💾 usuarios.db                      # Banco de dados SQLite
-├── 📄 README.md                        # Este arquivo
-└── 📄 .gitignore                       # Arquivos ignorados pelo Git
-
+├── Program.cs
+├── appsettings.json
+├── APIUsuarios.csproj
+├── usuarios.db
+├── README.md
+└── .gitignore
 \`\`\`
+
+---
+
+## 📋 Descrição das Camadas
+
+### Domain/
+Camada de domínio contendo a **entidade Usuario** com atributos de negócio:
+- Id, Nome, Email, Senha, DataNascimento, Telefone, Ativo, DataCriacao, DataAtualizacao
+
+### Application/
+Camada de aplicação com:
+- **DTOs**: Modelos de transferência de dados (Create, Read, Update)
+- **Interfaces**: Contratos do Repository e Service
+- **Services**: Lógica de negócio (orquestração)
+- **Validators**: Regras de validação com FluentValidation
+
+### Infrastructure/
+Camada de infraestrutura com:
+- **Persistence**: AppDbContext configurado para SQLite
+- **Repositories**: Implementação de acesso a dados
 
 ---
 
 ## 🛠 Tecnologias Utilizadas
 
-| Tecnologia | Versão | Propósito |
-|-----------|--------|----------|
-| **.NET SDK** | 9.0+ | Runtime e SDK |
-| **C#** | 12+ | Linguagem de programação |
-| **ASP.NET Core** | 9.0 | Framework web |
-| **Entity Framework Core** | 9.0 | ORM para acesso a dados |
-| **SQLite** | Latest | Banco de dados relacional |
-| **FluentValidation** | 11.x | Validação de dados |
-| **BCrypt.Net-Next** | 4.x | Hash de senhas |
+- **.NET SDK 9.0**
+- **ASP.NET Core 9.0**
+- **Entity Framework Core 9.0**
+- **SQLite**
+- **FluentValidation**
+- **BCrypt.Net-Next**
+- **Swagger/OpenAPI**
 
 ---
 
-## 👤 Entidade Usuario
+## ✅ Validações Implementadas
 
-```csharp
-public class Usuario
+| Campo | Regras |
+|-------|--------|
+| Nome | Obrigatório, 3-100 caracteres |
+| Email | Obrigatório, formato válido, ÚNICO |
+| Senha | Obrigatório, mínimo 6 caracteres |
+| DataNascimento | Obrigatório, idade >= 18 anos |
+| Telefone | Opcional, formato (XX) XXXXX-XXXX |
+
+---
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- .NET SDK 9.0 ou superior
+- Visual Studio Code ou Visual Studio 2022
+
+### Passos
+
+1. **Clonar o repositório**
+   \`\`\`bash
+   git clone https://github.com/miguel-mengue/api-usuarios.git
+   cd APIUsuarios
+   \`\`\`
+
+2. **Restaurar pacotes**
+   \`\`\`bash
+   dotnet restore
+   \`\`\`
+
+3. **Criar banco de dados**
+   \`\`\`bash
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
+   \`\`\`
+
+4. **Executar a API**
+   \`\`\`bash
+   dotnet run
+   \`\`\`
+
+A API estará disponível em:
+- **HTTP**: `http://localhost:5150`
+- **Swagger**: `http://localhost:5150/swagger`
+
+---
+
+## 📡 Endpoints da API
+
+### 1. GET /usuarios
+Retorna todos os usuários cadastrados.
+
+\`\`\`bash
+curl -X GET "http://localhost:5150/usuarios"
+\`\`\`
+
+**Resposta (200 OK):**
+\`\`\`json
+[
+  {
+    "id": 1,
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "dataNascimento": "2000-01-15",
+    "telefone": "(11) 98765-4321",
+    "ativo": true,
+    "dataCriacao": "2024-12-02T20:30:00Z"
+  }
+]
+\`\`\`
+
+---
+
+### 2. GET /usuarios/{id}
+Retorna um usuário específico por ID.
+
+\`\`\`bash
+curl -X GET "http://localhost:5150/usuarios/1"
+\`\`\`
+
+**Resposta (200 OK):**
+\`\`\`json
 {
-    public int Id { get; set; }                           // Identificador único
-    public string Nome { get; set; }                      // Nome (3-100 caracteres)
-    public string Email { get; set; }                     // Email único
-    public string Senha { get; set; }                     // Hash da senha (BCrypt)
-    public DateTime DataNascimento { get; set; }          // Data de nascimento
-    public string Telefone { get; set; }                  // Telefone (opcional)
-    public bool Ativo { get; set; } = true;              // Flag de ativo/deletado
-    public DateTime DataCriacao { get; set; }             // Data de criação
-    public DateTime? DataAtualizacao { get; set; }        // Data de última atualização
+  "id": 1,
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "dataNascimento": "2000-01-15",
+  "telefone": "(11) 98765-4321",
+  "ativo": true,
+  "dataCriacao": "2024-12-02T20:30:00Z"
 }
+\`\`\`
+
+**Resposta (404 Not Found):**
+\`\`\`json
+{
+  "mensagem": "Usuário não encontrado"
+}
+\`\`\`
+
+---
+
+### 3. POST /usuarios
+Cria um novo usuário.
+
+\`\`\`bash
+curl -X POST "http://localhost:5150/usuarios" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "senha": "senha123",
+    "dataNascimento": "2000-01-15",
+    "telefone": "(11) 98765-4321"
+  }'
+\`\`\`
+
+**Resposta (201 Created):**
+\`\`\`json
+{
+  "id": 1,
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "dataNascimento": "2000-01-15",
+  "telefone": "(11) 98765-4321",
+  "ativo": true,
+  "dataCriacao": "2024-12-02T20:30:00Z"
+}
+\`\`\`
+
+**Resposta (400 Bad Request) - Email Duplicado:**
+\`\`\`json
+{
+  "mensagem": "Este email já está cadastrado"
+}
+\`\`\`
+
+---
+
+### 4. PUT /usuarios/{id}
+Atualiza um usuário existente.
+
+\`\`\`bash
+curl -X PUT "http://localhost:5150/usuarios/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "João Silva Atualizado",
+    "email": "joao.novo@email.com",
+    "dataNascimento": "2000-01-15",
+    "telefone": "(11) 99999-8888",
+    "ativo": true
+  }'
+\`\`\`
+
+**Resposta (200 OK):**
+\`\`\`json
+{
+  "id": 1,
+  "nome": "João Silva Atualizado",
+  "email": "joao.novo@email.com",
+  "dataNascimento": "2000-01-15",
+  "telefone": "(11) 99999-8888",
+  "ativo": true,
+  "dataCriacao": "2024-12-02T20:30:00Z"
+}
+\`\`\`
+
+---
+
+### 5. DELETE /usuarios/{id}
+Marca um usuário como inativo (Soft Delete).
+
+\`\`\`bash
+curl -X DELETE "http://localhost:5150/usuarios/1"
+\`\`\`
+
+**Resposta (204 No Content):**
+\`\`\`
+(sem corpo de resposta)
+\`\`\`
+
+---
+
+## 📊 Tabela de Respostas HTTP
+
+| Endpoint | Sucesso | Não Encontrado | Erro Validação |
+|----------|---------|----------------|-----------------|
+| GET /usuarios | 200 | - | - |
+| GET /usuarios/{id} | 200 | 404 | - |
+| POST /usuarios | 201 | - | 400 |
+| PUT /usuarios/{id} | 200 | 404 | 400 |
+| DELETE /usuarios/{id} | 204 | 404 | - |
+
+---
+
+## 🏗 Padrões de Design
+
+- **Repository Pattern**: Abstração de acesso a dados
+- **Service Pattern**: Orquestração de lógica de negócio
+- **DTO Pattern**: Separação entre dados internos e expostos
+- **Dependency Injection**: Injeção de dependências via IoC Container
+- **Soft Delete**: Marca como inativo ao invés de remover
+
+---
+
+## 🔐 Segurança Implementada
+
+- **Hash de Senha**: BCrypt com salt automático
+- **Email Único**: Validação e índice no banco
+- **Validações Robustas**: Regras de negócio encapsuladas
+- **Soft Delete**: Histórico preservado
+- **DTOs**: Dados sensíveis não expostos
+
+---
+
+## 🐛 Troubleshooting
+
+**Erro: "UNIQUE constraint failed: Usuarios.Email"**
+- Use um email único: `novo@email.com`
+
+**Erro: "An error occurred while saving the entity changes"**
+- Verifique se os dados cumprem as restrições
+
+**API não inicia**
+\`\`\`bash
+taskkill /F /IM dotnet.exe
+dotnet run
+\`\`\`
+
+---
+
+## 📚 Referências
+
+- [ASP.NET Core Documentation](https://docs.microsoft.com/aspnet/core)
+- [Entity Framework Core](https://docs.microsoft.com/ef/core)
+- [FluentValidation](https://docs.fluentvalidation.net)
+- Clean Architecture - Robert C. Martin
+
+---
+
+## 👨‍💼 Autor
+
+**Nome**: Miguel Mengue 
+**Curso**: Analise e Desenvolvimento de Sistemas  
+**Instituição**: ULBRA
+**Período**: 2025/2
+
+---
+
+*Desenvolvido como trabalho final de Desenvolvimento Backend*
