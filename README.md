@@ -17,43 +17,41 @@ O vídeo contém:
 
 ## 📁 Estrutura do Projeto
 
-\`\`\`
 APIUsuarios/
-│
-├── Domain/
-│   └── Entities/
-│       └── Usuario.cs
-│
-├── Application/
-│   ├── DTOs/
-│   │   ├── UsuarioCreateDto.cs
-│   │   ├── UsuarioReadDto.cs
-│   │   └── UsuarioUpdateDto.cs
-│   ├── Interfaces/
-│   │   ├── IUsuarioRepository.cs
-│   │   └── IUsuarioService.cs
-│   ├── Services/
-│   │   └── UsuarioService.cs
-│   └── Validators/
-│       ├── UsuarioCreateDtoValidator.cs
-│       └── UsuarioUpdateDtoValidator.cs
-│
-├── Infrastructure/
-│   ├── Persistence/
-│   │   └── AppDbContext.cs
-│   └── Repositories/
-│       └── UsuarioRepository.cs
-│
-├── Migrations/
-│   └── [Migration files]
-│
-├── Program.cs
-├── appsettings.json
-├── APIUsuarios.csproj
-├── usuarios.db
-├── README.md
-└── .gitignore
-\`\`\`
+
+   Domain/
+      Entities/
+         Usuario.cs
+
+   Application/
+      DTOs/
+         UsuarioCreateDto.cs
+         UsuarioReadDto.cs
+         UsuarioUpdateDto.cs
+      Interfaces/
+         IUsuarioRepository.cs
+         IUsuarioService.cs
+      Services/
+         UsuarioService.cs
+      Validators/
+         UsuarioCreateDtoValidator.cs
+         UsuarioUpdateDtoValidator.cs
+
+   Infrastructure/
+      Persistence/
+         AppDbContext.cs
+      Repositories/
+=        UsuarioRepository.cs
+
+   Migrations/
+      [Migration files]
+
+   Program.cs
+   appsettings.json
+   APIUsuarios.csproj
+   usuarios.db
+   README.md
+   .gitignore
 
 ---
 
@@ -111,26 +109,25 @@ Camada de infraestrutura com:
 ### Passos
 
 1. **Clonar o repositório**
-   \`\`\`bash
-   git clone https://github.com/[seu-usuario]/api-usuarios.git
+
+   git clone https://github.com/miguel-mengue/api-usuarios.git
    cd APIUsuarios
-   \`\`\`
 
-2. **Restaurar pacotes**
-   \`\`\`bash
+3. **Restaurar pacotes**
+
    dotnet restore
-   \`\`\`
 
-3. **Criar banco de dados**
-   \`\`\`bash
+
+4. **Criar banco de dados**
+
    dotnet ef migrations add InitialCreate
    dotnet ef database update
-   \`\`\`
 
-4. **Executar a API**
-   \`\`\`bash
+
+5. **Executar a API**
+
    dotnet run
-   \`\`\`
+
 
 A API estará disponível em:
 - **HTTP**: `http://localhost:5150`
@@ -146,7 +143,7 @@ Retorna todos os usuários cadastrados.
 **URL:** `http://localhost:5150/usuarios`
 
 **Resposta esperada (200 OK):**
-\`\`\`json
+
 [
   {
     "id": 1,
@@ -158,7 +155,7 @@ Retorna todos os usuários cadastrados.
     "dataCriacao": "2024-12-02T20:30:00Z"
   }
 ]
-\`\`\`
+
 
 ---
 
@@ -168,7 +165,7 @@ Retorna um usuário específico por ID.
 **URL:** `http://localhost:5150/usuarios/1`
 
 **Resposta esperada (200 OK):**
-\`\`\`json
+
 {
   "id": 1,
   "nome": "João Silva",
@@ -178,14 +175,14 @@ Retorna um usuário específico por ID.
   "ativo": true,
   "dataCriacao": "2024-12-02T20:30:00Z"
 }
-\`\`\`
+
 
 **Resposta (404 Not Found):**
-\`\`\`json
+
 {
   "mensagem": "Usuário não encontrado"
 }
-\`\`\`
+
 
 ---
 
@@ -195,7 +192,7 @@ Cria um novo usuário.
 **URL:** `http://localhost:5150/usuarios`
 
 **Corpo da requisição:**
-\`\`\`json
+
 {
   "nome": "João Silva",
   "email": "joao@email.com",
@@ -203,10 +200,10 @@ Cria um novo usuário.
   "dataNascimento": "2000-01-15",
   "telefone": "(11) 98765-4321"
 }
-\`\`\`
+
 
 **Resposta esperada (201 Created):**
-\`\`\`json
+
 {
   "id": 1,
   "nome": "João Silva",
@@ -216,7 +213,7 @@ Cria um novo usuário.
   "ativo": true,
   "dataCriacao": "2024-12-02T20:30:00Z"
 }
-\`\`\`
+
 
 **Resposta (400 Bad Request) - Email Duplicado:**
 \`\`\`json
@@ -264,9 +261,9 @@ Marca um usuário como inativo (Soft Delete).
 **URL:** `http://localhost:5150/usuarios/1`
 
 **Resposta esperada (204 No Content):**
-\`\`\`
+
 (sem corpo de resposta)
-\`\`\`
+
 
 ---
 
@@ -311,10 +308,10 @@ Marca um usuário como inativo (Soft Delete).
 - Verifique se os dados cumprem as restrições
 
 **API não inicia**
-\`\`\`bash
+
 taskkill /F /IM dotnet.exe
 dotnet run
-\`\`\`
+
 
 ---
 
@@ -329,10 +326,10 @@ dotnet run
 
 ## 👨‍💼 Autor
 
-**Nome**: [Seu Nome Completo]  
-**RA**: [Seu RA]  
-**Curso**: [Nome do Curso]  
-**Instituição**: [Sua Instituição]  
+**Nome**: Miguel Mengue
+
+**Curso**: Analise e Desenvolvimento de sistemas
+**Instituição**: ULBRA 
 **Período**: 2025/2
 
 ---
